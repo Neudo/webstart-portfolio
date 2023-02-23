@@ -1,21 +1,30 @@
 import HeaderComponent from "./header";
 import {FC} from "react";
 import SocialComponent from "@/components/social";
+import {useRouter} from "next/router";
 
 interface Props {
     children: JSX.Element
 }
 
  const LayoutComponent: FC<Props> = ({ children }) => {
-    return (
-        <>
+    const { pathname } = useRouter()
+     const adminPath = pathname.startsWith(`/admin`)
 
-            <HeaderComponent/>
-            <main>{children}</main>
-            <SocialComponent/>
+  if(adminPath) return (
+      <main>{children}</main>
 
-        </>
-    )
+  )
+
+   else return (
+      <>
+          <HeaderComponent/>
+          <main>{children}</main>
+          <SocialComponent/>
+      </>
+  )
+
+
 }
 
 export default LayoutComponent
