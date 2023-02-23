@@ -5,11 +5,11 @@ import SocialComponent from "@/components/social";
 import AboutComponent from "@/components/about-component/about";
 import {ReactElement} from "react";
 import LayoutComponent from "@/components/layout";
-import {NextPageWithLayout} from "@/pages/_app";
+// import {NextPageWithLayout} from "@/pages/_app";
 
 const inter = Inter({ subsets: ['latin'] })
 
-const Page: NextPageWithLayout = () => {
+const Page = () => {
     return (
         <>
             <AboutComponent></AboutComponent>
