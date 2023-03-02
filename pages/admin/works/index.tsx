@@ -3,6 +3,10 @@ import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import {IWork} from "@/@types/work";
 import {NextPage} from "next";
+import SidebarComponent from "@/components/admin-component/sidebar";
+import Link from "next/link";
+import { useRouter } from 'next/router'
+import Router from 'next/router';
 
 
 interface Request {
@@ -12,10 +16,24 @@ interface Request {
 }
 
 
-  const Admin: NextPage = () => {
+const Admin: NextPage = () => {
 
     const [data, setData] = useState<IWork[] | null>(null)
     const [isLoading, setLoading] = useState(false)
+
+
+    const deleteWork = async (id: number) => {
+        const workId = id
+        const response = await fetch(`/api/works/${workId}`, {
+            method: 'DELETE',
+        })
+        if(response.ok){
+            Router.reload();
+        }
+    }
+
+
+
 
 
     useEffect(() => {
@@ -29,26 +47,23 @@ interface Request {
             })
     }, [])
 
-
     if (isLoading) return <p>Chargement des donées ...</p>
 
     if(data) return (
         <>
             <div className="flex">
-                <div className="sidebar w-1/5 bg-lightBlueSecondary-0 p-5 mr-5 h-screen ">
-                    <ul>
-                    <li><a href="#">Liste des Works</a></li>
-                    <li><a href="#">Ajouter un Work</a></li>
-                    <li></li>
-                </ul>
-                </div>
+                <SidebarComponent></SidebarComponent>
                 <div className="w-1/2">
                     {data.map(work => (
                         <div key={work._id} className="card-work flex bg-black p-3.5 mb-5 justify-between">
                             <h4 className="w-1/2">{work.title}</h4>
                             <div className="actions">
                                 <a className="text-green-500 mr-2" href="#">Modifier</a>
-                                <a className="text-red-700" href="#">Supprimer</a>
+                                {/*<a className="text-red-700" href="#">Supprimer</a>*/}
+                                <Link legacyBehavior  href="#" >
+                                    <a className="text-red-700" onClick={() => deleteWork(work._id)} > supprimer</a>
+                                    {/*<button onClick={() => sayHello('James')}>Greet</button>*/}
+                                </Link>
                             </div>
                         </div>
                     ))}
@@ -56,7 +71,8 @@ interface Request {
             </div>
         </>
     )
-      return <h1>Erreur </h1>
+    return <h1>Erreur </h1>
 }
+
 
 export default Admin
