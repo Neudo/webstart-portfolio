@@ -22,7 +22,7 @@ const Admin: NextPage = () => {
     const [isLoading, setLoading] = useState(false)
 
 
-    const deleteWork = async (id: number) => {
+    const deleteWork = async (id: string) => {
         const workId = id
         const response = await fetch(`/api/works/${workId}`, {
             method: 'DELETE',
@@ -32,16 +32,11 @@ const Admin: NextPage = () => {
         }
     }
 
-
-
-
-
     useEffect(() => {
         setLoading(true)
         fetch('/api/works')
             .then((res) => res.json())
             .then((data) => {
-                console.log(data)
                 setData(data.works)
                 setLoading(false)
             })
@@ -53,17 +48,16 @@ const Admin: NextPage = () => {
         <>
             <div className="flex">
                 <SidebarComponent></SidebarComponent>
-                <div className="w-1/2">
+                <div className="w-1/2 mt-5 ">
                     {data.map(work => (
                         <div key={work._id} className="card-work flex bg-black p-3.5 mb-5 justify-between">
-                            <h4 className="w-1/2">{work.title}</h4>
-                            <div className="actions">
-                                <a className="text-green-500 mr-2" href="#">Modifier</a>
-                                {/*<a className="text-red-700" href="#">Supprimer</a>*/}
-                                <Link legacyBehavior  href="#" >
-                                    <a className="text-red-700" onClick={() => deleteWork(work._id)} > supprimer</a>
-                                    {/*<button onClick={() => sayHello('James')}>Greet</button>*/}
-                                </Link>
+                            <div className="flex items-center w-full">
+                                <h4 className="w-1/2">{work.title}</h4>
+                                <div className="actions">
+                                    <Link href={`/admin/works/${work._id}`}>Modifier</Link>
+                                    <button className="text-red-700" onClick={() => deleteWork(work._id)}> supprimer
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}

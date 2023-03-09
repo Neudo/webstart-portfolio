@@ -1,20 +1,29 @@
 import {useEffect, useState} from "react";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 import {IWork} from "@/@types/work";
 import {NextPage} from "next";
 import SidebarComponent from "@/components/admin-component/sidebar";
-import Link from "next/link";
-import Router from "next/router";
+import Router, {useRouter} from "next/router";
 
 interface Request {
     data?: IWork[],
-    error?: string,
-    isLoading?: boolean
 }
 
 
-const CreateAdmin: NextPage = () => {
+const EditAdmin: NextPage = () => {
+    const router = useRouter();
+    const { id } = router.query
+
+    const [work, setWork] = useState<IWork[] | null>(null)
+
+    useEffect(() => {
+        fetch(`/api/works/${id}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setWork(data.work)
+                console.log(work)
+            })
+    }, [id])
+
 
     const [formData, setFormData] = useState({
         seoTitle: '',
@@ -25,12 +34,11 @@ const CreateAdmin: NextPage = () => {
         coverImage:'',
         published: false
     });
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
 
-        const response = await fetch('/api/works/', {
-            method: 'POST',
+        const response = await fetch(`/api/works/${id}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -101,7 +109,7 @@ const CreateAdmin: NextPage = () => {
                         <input type="checkbox" id="published" name="published"/>
                     </label>
 
-                    <button type="submit">Ajouter</button>
+                    <button type="submit">Éditer le work</button>
                 </form>
             </div>
         </div>
@@ -110,4 +118,4 @@ const CreateAdmin: NextPage = () => {
 }
 
 
-export default CreateAdmin
+export default EditAdmin

@@ -18,6 +18,9 @@
     h2{
         font-size: 30px;
     }
+    h3{
+        font-size: 24px;
+    }
     p{
         font-size: 18px;
         font-family: 'Open Sans', sans-serif;
@@ -45,6 +48,27 @@
 
     label{
         color: black;
+    }
+
+
+    .half-width{
+        width: 48%;
+        margin-right: 2%;
+    }
+    .form-add-work label{
+        color: white;
+    }
+    .form-add-work input{
+        color: black;
+    }
+    .wrapper-seo{
+        width: 100%;
+    }
+
+    button{
+        padding: 10px 45px;
+        background-color: white !important;
+        color: #1F3140;
     }
 
 }
