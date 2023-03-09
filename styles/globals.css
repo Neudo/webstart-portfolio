@@ -46,7 +46,7 @@
         font-weight: bold;
     }
 
-    label{
+    label, textarea{
         color: black;
     }
 
