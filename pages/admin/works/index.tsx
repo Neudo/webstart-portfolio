@@ -54,7 +54,7 @@ const Admin: NextPage = () => {
                             <div className="flex items-center w-full">
                                 <h4 className="w-1/2">{work.title}</h4>
                                 <div className="actions">
-                                    <Link href={`/admin/works/${work._id}`}>Modifier</Link>
+                                    <Link className="text-orange-400 mr-2" href={`/admin/works/${work._id}`}>Voir / Modifier</Link>
                                     <button className="text-red-700" onClick={() => deleteWork(work._id)}> supprimer
                                     </button>
                                 </div>
