@@ -3,16 +3,23 @@ import {Simulate} from "react-dom/test-utils";
 import error = Simulate.error;
 import {IWork} from "@/@types/work";
 import {NextPage} from "next";
+import {CldUploadButton} from 'next-cloudinary';
+const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
+
+
+
 import SidebarComponent from "@/components/admin-component/sidebar";
 import Link from "next/link";
 import Router from "next/router";
+import * as process from "process";
+import * as url from "url";
 
 interface Request {
     data?: IWork[],
     error?: string,
     isLoading?: boolean
 }
-
 
 const CreateAdmin: NextPage = () => {
 
@@ -23,7 +30,7 @@ const CreateAdmin: NextPage = () => {
         slug:'',
         description:'',
         coverImage:'',
-        published: false
+        published: ''
     });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) =>{
@@ -42,7 +49,7 @@ const CreateAdmin: NextPage = () => {
                 title: formData.title,
                 description: formData.description,
                 slug: formData.slug,
-                coverImage: formData.coverImage,
+                coverImage: imageUrl ,
                 published: formData.published
             })
         })
@@ -54,12 +61,13 @@ const CreateAdmin: NextPage = () => {
                 slug:'',
                 description:'',
                 coverImage:'',
-                published: false
+                published: ''
             })
             Router.reload();
 
         }
     }
+    const [imageUrl, setImageUrl] = useState('');
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement >) => {
         setFormData({
@@ -67,6 +75,11 @@ const CreateAdmin: NextPage = () => {
             [event.target.name]: event.target.value
         })
     }
+
+    const handleUpload = (result: { info: { public_id: any; }; }) => {
+        const url = result.info.public_id
+        setImageUrl(url);
+    };
 
     return (
         <div className="flex">
@@ -79,8 +92,14 @@ const CreateAdmin: NextPage = () => {
                     <label className="flex flex-col half-width" htmlFor=""> Slug (url)
                         <input type="text" id="slug" name="slug" value={formData.slug} onChange={handleInputChange} />
                     </label>
-                    <label className="flex flex-col half-width" htmlFor=""> Image
-                        <input type="text" id="coverImage" name="coverImage" value={formData.coverImage} onChange={handleInputChange} />
+                    <CldUploadButton
+                        uploadPreset={uploadPreset}
+                        onUpload={handleUpload}
+                    >
+                        Upload image
+                    </CldUploadButton>
+                    <label className="flex flex-col half-width" htmlFor=""> ID de l image
+                        <input type="text" id="coverImage" placeholder="id de l'image" name="coverImage" value={imageUrl}/>
                     </label>
 
                     <label className="flex flex-col w-full" htmlFor=""> Description

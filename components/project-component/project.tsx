@@ -2,10 +2,13 @@ import {FC} from "react";
 import imgProject from "assets/img/project01.jpg"
 import Link from "next/link";
 
+
+
 const ProjectComponent: FC = () =>
     (
         <>
             <div className="item-project flex relative ">
+
                 <Link href="/project-details" className="wrapper-img w-3/4 filter-img ">
                 <div> <img src={imgProject.src} alt=""/>
                 </div>

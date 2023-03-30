@@ -1,12 +1,12 @@
 import {useEffect, useState} from "react";
 import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 import {IWork} from "@/@types/work";
 import {NextPage} from "next";
 import SidebarComponent from "@/components/admin-component/sidebar";
 import Link from "next/link";
-import { useRouter } from 'next/router'
 import Router from 'next/router';
+import {useSession} from "next-auth/react";
+
 
 
 interface Request {
@@ -17,7 +17,6 @@ interface Request {
 
 
 const Admin: NextPage = () => {
-
     const [data, setData] = useState<IWork[] | null>(null)
     const [isLoading, setLoading] = useState(false)
 
@@ -47,6 +46,8 @@ const Admin: NextPage = () => {
     if(data) return (
         <>
             <div className="flex">
+
+
                 <SidebarComponent></SidebarComponent>
                 <div className="w-1/2 mt-5 ">
                     {data.map(work => (

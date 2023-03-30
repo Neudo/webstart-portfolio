@@ -98,5 +98,10 @@
         inset: 0;
         background-color: #5E88BF;
         opacity: .4;
+        transition: background-color .3s ease;
+    }
+
+    .filter-img:hover:before{
+        background-color: unset;
     }
 }
