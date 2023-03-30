@@ -34,6 +34,7 @@ const EditAdmin: NextPage = () => {
         coverImage:'',
         published:false
     });
+    const [message, setMessage] = useState("");
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
 
@@ -52,8 +53,11 @@ const EditAdmin: NextPage = () => {
             })
         })
         if (response.ok) {
-            console.log('ok')
             //message pour dire que c'est ok
+            setMessage("Votre travail a bien été modifié !");
+        }
+        else {
+            setMessage("Erreur critique ...");
         }
     }
 
@@ -70,6 +74,7 @@ const EditAdmin: NextPage = () => {
         <div className="flex">
             <SidebarComponent></SidebarComponent>
             <div className="w-1/2 m-auto">
+                {message && <p>{message}</p>}
                 <form  className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" onSubmit={handleSubmit}>
                     <label className="flex flex-col half-width " htmlFor="title"> Titre
                         <input type="text" id="title" name="title" value={formData.title} onChange={handleInputChange} />

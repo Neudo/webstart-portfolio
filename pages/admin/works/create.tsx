@@ -22,7 +22,7 @@ interface Request {
 }
 
 const CreateAdmin: NextPage = () => {
-
+    const [message, setMessage] = useState("");
     const [formData, setFormData] = useState({
         seoTitle: '',
         seoDescription: '',
@@ -61,7 +61,10 @@ const CreateAdmin: NextPage = () => {
                 coverImage:'',
             })
             Router.reload();
+            setMessage("Votre travail a bien été créé !");
 
+        } else {
+            setMessage("Erreur critique ");
         }
     }
     const [imageUrl, setImageUrl] = useState('');
