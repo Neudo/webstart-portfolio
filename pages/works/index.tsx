@@ -30,11 +30,12 @@ export const getStaticProps: GetStaticProps = async () =>
 }
 
 const WorksPage: NextPage<Props> = ({works}) => {
+    // @ts-ignore
     return (
         <>
 
             <div className="container mt-20">
-                {works.map((work) => (
+                {works?.map((work) => (
                     <>
                         <div className="item-project flex relative mb-5 ">
 
