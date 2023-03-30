@@ -13,25 +13,26 @@ const EditAdmin: NextPage = () => {
     const router = useRouter();
     const { id } = router.query
 
-    const [work, setWork] = useState<IWork | null>(null)
 
     useEffect(() => {
         fetch(`/api/works/${id}`)
             .then((res) => res.json())
             .then((data) => {
-                setWork(data.work)
+                setFormData(data.work)
             })
     }, [id])
 
 
     const [formData, setFormData] = useState({
-        seoTitle: '',
-        seoDescription: '',
+        seo:{
+            title: '',
+            description: '',
+        },
         title:'',
         slug:'',
         description:'',
         coverImage:'',
-        published: false
+        published:false
     });
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) =>{
         event.preventDefault()
@@ -42,10 +43,7 @@ const EditAdmin: NextPage = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                seo:{
-                    title: formData.seoTitle,
-                    description: formData.description
-                },
+                seo:formData.seo,
                 title: formData.title,
                 description: formData.description,
                 slug: formData.slug,
@@ -54,21 +52,14 @@ const EditAdmin: NextPage = () => {
             })
         })
         if (response.ok) {
-            setFormData({
-                seoTitle: '',
-                seoDescription: '',
-                title:'',
-                slug:'',
-                description:'',
-                coverImage:'',
-                published: false
-            })
-            Router.reload();
-
+            console.log('ok')
+            //message pour dire que c'est ok
         }
     }
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement >) => {
+        console.log(event.target.value)
+        console.log(formData?.title)
         setFormData({
             ...formData,
             [event.target.name]: event.target.value
@@ -81,27 +72,27 @@ const EditAdmin: NextPage = () => {
             <div className="w-1/2 m-auto">
                 <form  className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" onSubmit={handleSubmit}>
                     <label className="flex flex-col half-width " htmlFor="title"> Titre
-                        <input type="text" id="title" name="title" value={work?.title ?? ''} onChange={handleInputChange} />
+                        <input type="text" id="title" name="title" value={formData.title} onChange={handleInputChange} />
                     </label>
                     <label className="flex flex-col half-width" htmlFor=""> Slug (url)
-                        <input type="text" id="slug" name="slug" value={work?.slug ?? ''} onChange={handleInputChange} />
+                        <input type="text" id="slug" name="slug" value={formData.slug} onChange={handleInputChange} />
                     </label>
                     <label className="flex flex-col half-width" htmlFor=""> Image
-                        <input type="text" id="coverImage" name="coverImage" value={ ''} onChange={handleInputChange} />
+                        <input type="text" id="coverImage" name="coverImage" value={ formData.coverImage} onChange={handleInputChange} />
                     </label>
 
                     <label className="flex flex-col w-full" htmlFor=""> Description
-                        <textarea id="description" name="description" value={work?.description ?? ''}
+                        <textarea id="description" name="description" value={formData.description}
                                   onChange={handleInputChange}></textarea>
                     </label>
 
                     <div className="wrapper-seo bg-darkBlue-0 mt-3 mb-3 p-3">
                         <h3 className="mb-5">Seo</h3>
                         <label className="flex flex-col w-1/2 text-white " htmlFor="">titre
-                            <input type="text" id="seoTitle" name="seoTitle" value={work?.seo?.title ?? ''} onChange={handleInputChange} />
+                            <input type="text" id="seoTitle" name="seoTitle" value={formData.seo.title} onChange={handleInputChange} />
                         </label>
                         <label className="flex flex-col w-1/2 text-white " htmlFor=""> Description
-                            <textarea  id="seoDescription" name="seoDescription" value={work?.seo?.description ?? ''} onChange={handleInputChange}/>
+                            <textarea  id="seoDescription" name="seoDescription" value={formData.seo.description} onChange={handleInputChange}/>
                         </label>
                     </div>
                     <label className="w-full" htmlFor="published"> Publier

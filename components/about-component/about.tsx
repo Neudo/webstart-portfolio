@@ -62,7 +62,7 @@ const AboutComponent: FC = () =>
 
 
             <div className="wrapper-cta mb-[180px]">
-                <Link href="/projects-list" className="cta">Projets séléctionnés </Link>
+                <Link href="/works" className="cta">Projets séléctionnés </Link>
             </div>
 
         </div>

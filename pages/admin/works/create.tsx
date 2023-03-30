@@ -30,7 +30,6 @@ const CreateAdmin: NextPage = () => {
         slug:'',
         description:'',
         coverImage:'',
-        published: ''
     });
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) =>{
@@ -50,7 +49,6 @@ const CreateAdmin: NextPage = () => {
                 description: formData.description,
                 slug: formData.slug,
                 coverImage: imageUrl ,
-                published: formData.published
             })
         })
         if (response.ok) {
@@ -61,7 +59,6 @@ const CreateAdmin: NextPage = () => {
                 slug:'',
                 description:'',
                 coverImage:'',
-                published: ''
             })
             Router.reload();
 
