@@ -2,6 +2,9 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from '@/utils/mongodb';
 import WorkModel from '@/models/WorkModel';
 import { IWork } from '@/@types/work'
+import {session} from "next-auth/core/routes";
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/pages/api/auth/[...nextauth]";
 
 type Data = {
 
@@ -11,8 +14,13 @@ type Data = {
 
 }
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+    const session = await getServerSession(req,res,authOptions)
+
 
     if (req.method === 'POST') {
+        if(!session){
+            return res.status(401)
+        }
         try {
             dbConnect()
             const work = await WorkModel.create(req.body)
