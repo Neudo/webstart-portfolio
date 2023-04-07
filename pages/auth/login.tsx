@@ -1,6 +1,4 @@
 import {ChangeEvent, FormEvent, useState} from "react";
-import {credentials} from "@aws-sdk/signature-v4/dist-types/suite.fixture";
-import {func} from "prop-types";
 
 
 
