@@ -25,7 +25,6 @@ const SingleWorkPage: NextPage<Props> = ({ work }) => {
                     src={work.coverImage} alt={work.title}></CldImage>
             </div>
 
-
             <div className="container mt-[100px]">
                 <h2 className="mb-10">{work.title}</h2>
 

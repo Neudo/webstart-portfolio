@@ -7,8 +7,8 @@ const ContactComponent: FC = () =>
                     <input id="email" name="email" type="text"/>
                 </label>
 
-                <label className="flex flex-col w-full mt-5 " htmlFor="email"> Votre Message
-                    <textarea/>
+                <label className="flex flex-col w-full mt-5 " htmlFor="message"> Votre Message
+                    <textarea id="message" name="message" />
                 </label>
                 <button type="submit">Envoyer</button>
             </form>
