@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import dbConnect from '@/utils/mongodb';
 import WorkModel from '@/models/WorkModel';
 import { IWork } from '@/@types/work'
-import {session} from "next-auth/core/routes";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/pages/api/auth/[...nextauth]";
 
@@ -23,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (req.method === 'GET') {
         if(!session){
-            return res.status(401)
+            return res.status(401).json({message: 'ko'})
         }
         try {
             dbConnect()

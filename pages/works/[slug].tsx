@@ -2,6 +2,7 @@ import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {IWork} from "@/@types/work";
 import * as process from "process";
 import { ParsedUrlQuery } from 'querystring'
+import Head from "next/head";
 
 interface Props {
     work: IWork | null
@@ -11,10 +12,10 @@ interface Props {
 const SingleWorkPage: NextPage<Props> = ({ work }) => {
     return (
         <>
-            <head>
+            <Head>
                 <title>Document</title>
-            </head>
-            <h1>{work?.title ?? 'Pas de projet !'}</h1>
+            </Head>
+            <h1>{work?.title ?? 'Pas de projet ! ok'}</h1>
 
         </>
     )
@@ -33,7 +34,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
         return {
             props: {work}
         }
-    } catch {
+    } catch (error){
+        console.log(error)
         return {
             props: {work: null}
         }
@@ -53,8 +55,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
                 slug: work.slug ?? undefined
             }
         }))
-        console.log(paths)
-
         return {
             paths,
             fallback: false,
