@@ -1,25 +1,8 @@
 import React, {FC} from "react";
-
-
-const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>{
-    e.preventDefault()
-    console.log('ok')
-    const myForm = e.target;
-    const formData = new FormData(myForm);
-
-    fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString(),
-    })
-        .then(() => console.log("Form successfully submitted"))
-        .catch((error) => alert(error));
-};
-
 const ContactComponent: FC = () =>
     (
         <div className=" mt-5 w-full md:w-1/2 m-auto">
-            <form data-netlify="true" name="contact" className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" method="POST" onSubmit={handleSubmit}>
+            <form data-netlify="true" name="contact" className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" method="POST">
                 <label className="flex flex-col w-full " htmlFor="email"> Votre mail
                     <input id="email" name="email" type="text"/>
                 </label>
