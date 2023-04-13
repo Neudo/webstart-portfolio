@@ -11,7 +11,6 @@ export default function Login() {
     function onSubmit(e: FormEvent<HTMLFormElement>){
 
         e.preventDefault()
-        console.log('pages/auth/login.tsx > credentials', credentials)
 
     }
 

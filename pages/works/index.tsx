@@ -38,8 +38,7 @@ const WorksPage: NextPage<Props> = ({works}) => {
                 {works?.map((work) => (
                     <>
                         <div className="item-project flex relative mb-5 ">
-
-                            <Link href="/project-details" className="wrapper-img w-3/4 filter-img ">
+                            <Link href={`/work/slug/${work.slug}`} className="wrapper-img w-3/4 filter-img ">
                                 <div className="max-w-[1000px] max-h-[400px] overflow-hidden " ><CldImage
                                     width="900"
                                     height="400"
