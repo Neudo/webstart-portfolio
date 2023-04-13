@@ -8,14 +8,11 @@ import {CldImage} from "next-cloudinary";
 import {useRouter} from "next/router";
 
 interface Props {
-    work: IWork | null
+    work: IWork
 }
 
 
 const SingleWorkPage: NextPage<Props> = ({ work }) => {
-    const router = useRouter()
-    if( work ){
-
     return (
         <>
             <Head>
@@ -43,12 +40,6 @@ const SingleWorkPage: NextPage<Props> = ({ work }) => {
 
         </>
     )
-    } else {
-        return (
-              router.push('/404')
-        )
-    }
-
 }
 
 interface Params extends ParsedUrlQuery {
@@ -67,7 +58,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     } catch (error){
         console.log(error)
         return {
-            props: {work: null}
+            props: {work: null},
+            notFound: true
         }
     }
 }
