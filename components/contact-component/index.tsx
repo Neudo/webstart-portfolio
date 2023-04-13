@@ -1,15 +1,37 @@
-import {FC} from "react";
+import React, {FC} from "react";
+
+
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) =>{
+    e.preventDefault()
+    console.log('ok')
+    const myForm = e.target;
+    const formData = new FormData(myForm);
+
+    fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString(),
+    })
+        .then(() => console.log("Form successfully submitted"))
+        .catch((error) => alert(error));
+};
 
 const ContactComponent: FC = () =>
     (
-        < form action="">
-            <input
-                id="email" name="email"
-                style={ {
-                border: '1px solid black',
-                borderRadius: '4px',
-            } } type="text"/>
-        </form>
+        <div className=" mt-5 w-full md:w-1/2 m-auto">
+            <form data-netlify="true" name="contact" className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" method="POST" onSubmit={handleSubmit}>
+                <label className="flex flex-col w-full " htmlFor="email"> Votre mail
+                    <input id="email" name="email" type="text"/>
+                </label>
+
+                <label className="flex flex-col w-full mt-5 " htmlFor="email"> Votre Message
+                    <textarea/>
+                </label>
+
+                <input type="hidden" name="form-name" value="contact"/>
+                <button type="submit">Envoyer</button>
+            </form>
+        </div>
     )
 
 export default ContactComponent
