@@ -5,6 +5,7 @@ import { ParsedUrlQuery } from 'querystring'
 import Head from "next/head";
 import Link from "next/link";
 import {CldImage} from "next-cloudinary";
+import {useRouter} from "next/router";
 
 interface Props {
     work: IWork | null
@@ -12,6 +13,9 @@ interface Props {
 
 
 const SingleWorkPage: NextPage<Props> = ({ work }) => {
+    const router = useRouter()
+    if( work ){
+
     return (
         <>
             <Head>
@@ -21,15 +25,15 @@ const SingleWorkPage: NextPage<Props> = ({ work }) => {
                 <CldImage
                     width="900"
                     height="400"
-                    src={work?.coverImage} alt={work?.title}></CldImage>
+                    src={work.coverImage} alt={work.title}></CldImage>
             </div>
 
 
             <div className="container mt-[100px]">
-                <h2 className="mb-10">{work?.title ?? 'Pas de projet !'}</h2>
+                <h2 className="mb-10">{work.title}</h2>
 
                 <p className="w-4/5">
-                    {work?.description}
+                    {work.description}
                 </p>
             </div>
 
@@ -39,6 +43,12 @@ const SingleWorkPage: NextPage<Props> = ({ work }) => {
 
         </>
     )
+    } else {
+        return (
+              router.push('/404')
+        )
+    }
+
 }
 
 interface Params extends ParsedUrlQuery {
