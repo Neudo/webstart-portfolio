@@ -10,8 +10,6 @@ const ContactComponent: FC = () =>
                 <label className="flex flex-col w-full mt-5 " htmlFor="email"> Votre Message
                     <textarea/>
                 </label>
-
-                <input type="hidden" name="form-name" value="contact"/>
                 <button type="submit">Envoyer</button>
             </form>
         </div>
