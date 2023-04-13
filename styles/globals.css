@@ -5,6 +5,8 @@
 
 
 @layer base {
+
+
     body{
         background-color: #1F3140;
         color: white;
@@ -24,6 +26,21 @@
     p{
         font-size: 18px;
         font-family: 'Open Sans', sans-serif;
+    }
+    @media (max-width: 768px ) {
+
+        p{
+            font-size: 16px;
+        }
+        h1{
+            font-size: 65px;
+        }
+        h2{
+            font-size: 25px;
+        }
+        h3{
+            font-size: 20px;
+        }
     }
 
     img{
@@ -67,9 +84,10 @@
     }
 
     button{
-        padding: 10px 45px;
+        padding: 10px 15px;
         background-color: white !important;
         color: #1F3140;
+        margin-right: 15px;
     }
 
     form{
@@ -78,6 +96,11 @@
 
     .card-work{
         box-shadow: 4px 4px 12px 1px #0c1c26;
+    }
+
+    label{
+        padding: 0;
+        margin-bottom: 5px;
     }
 
 }

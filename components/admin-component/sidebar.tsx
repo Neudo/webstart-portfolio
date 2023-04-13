@@ -7,7 +7,7 @@ const SidebarComponent: FC = () =>
     const  {data} = useSession()
 
     return(
-        <div className="sidebar w-1/5 bg-lightBlueSecondary-0 p-5 mr-5 h-screen ">
+        <div className="sidebar w-full md:w-1/5 bg-lightBlueSecondary-0 p-5 mr-5 md:h-screen ">
             <ul>
                 <li>Bonjour, {data?.user?.name}</li>
                 <li><button onClick={()=>signOut()}>Se déconnecter </button></li>

@@ -82,9 +82,9 @@ const CreateAdmin: NextPage = () => {
     };
 
     return (
-        <div className="flex">
+        <div className="md:flex">
             <SidebarComponent></SidebarComponent>
-            <div className="w-1/2 m-auto">
+            <div className=" mt-5 w-full md:w-1/2 m-auto">
                 <form  className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" onSubmit={handleSubmit}>
                     <label className="flex flex-col half-width " htmlFor="title"> Titre
                         <input type="text" id="title" name="title" value={formData.title} onChange={handleInputChange} />
@@ -109,10 +109,10 @@ const CreateAdmin: NextPage = () => {
 
                     <div className="wrapper-seo bg-darkBlue-0 mt-3 mb-3 p-3">
                         <h3 className="mb-5">Seo</h3>
-                        <label className="flex flex-col w-1/2 text-white " htmlFor="">titre
+                        <label className="flex flex-col w-full text-white " htmlFor="">titre
                             <input type="text" id="seoTitle" name="seoTitle" value={formData.seoTitle} onChange={handleInputChange} />
                         </label>
-                        <label className="flex flex-col w-1/2 text-white " htmlFor=""> Description
+                        <label className="flex flex-col w-full text-white " htmlFor=""> Description
                             <textarea  id="seoDescription" name="seoDescription" value={formData.seoDescription} onChange={handleInputChange}/>
                         </label>
                     </div>

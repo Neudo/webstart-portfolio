@@ -45,11 +45,11 @@ const Admin: NextPage = () => {
 
     if(data) return (
         <>
-            <div className="flex">
+            <div className="md:flex">
 
 
                 <SidebarComponent></SidebarComponent>
-                <div className="w-1/2 mt-5 ">
+                <div className="w-full md:w-1/2 mt-5 ">
                     {data.map(work => (
                         <div key={work._id} className="card-work flex bg-black p-3.5 mb-5 justify-between">
                             <div className="flex items-center w-full">

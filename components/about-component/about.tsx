@@ -7,7 +7,7 @@ import Link from "next/link";
 const AboutComponent: FC = () =>
     (
         <div className="container">
-            <div className="wrapper-text w-1/2 m-auto mb-20">
+            <div className="wrapper-text w-full md:w-1/2 m-auto mb-20">
                 <h2 className="mb-7">À propos</h2>
                 <p>
                     Curieux, rigoureux, et motivé par l’envie d’apprendre et de relever des défis Intégrer une école proposant l’alternance était pour moi une priorité. L’école Webstart fut mon choix. Dans le but de devenir développeur front end, j’ai choisi la formation de Développeur Web et mobile et ai validé ma première année.
@@ -17,7 +17,7 @@ const AboutComponent: FC = () =>
             </div>
 
 
-            <div className="wrapper-text w-1/2 m-auto mb-20">
+            <div className="wrapper-text w-full md:w-1/2 m-auto mb-20">
                 <h2 className="mb-7">MON PARCOURS</h2>
                 <p>
                     Après cinq ans passés dans l’armée de terre, j’ai fait le choix de me reconvertir. J’ai d’abord
@@ -29,26 +29,26 @@ const AboutComponent: FC = () =>
                 </p>
             </div>
 
-            <div className="wrapper-text w-1/2 m-auto">
+            <div className="wrapper-text w-full md:w-1/2 sm:5/6 m-auto">
                 <h2 className="mb-7">Compétences</h2>
 
-                <div className="wrapper-skills flex pb-20 justify-between ">
-                    <div className="w-32 bg-lightBlue-0 p-5 shadow-2xl ">
+                <div className="wrapper-skills flex pb-20 flex-wrap justify-between ">
+                    <div className="w-32 bg-lightBlue-0 p-5 shadow-2xl mt-2 ">
                         <ul>
                             <li>Js</li>
                             <li>Gsap</li>
-                            <li>NodejS</li>
+                            <li>NodeJS</li>
                             <li>VueJS</li>
                         </ul>
                     </div>
-                    <div className="w-32 bg-darkBlue-0 p-5 shadow-2xl">
+                    <div className="w-32 bg-darkBlue-0 p-5 shadow-2xl mt-2">
                         <ul>
                             <li>PHP</li>
                             <li>Wordpress</li>
                             <li>Drupal</li>
                         </ul>
                     </div>
-                    <div className="w-32 bg-lightBlueSecondary-0 p-5 shadow-2xl ">
+                    <div className="w-32 bg-lightBlueSecondary-0 p-5 shadow-2xl mt-2 ">
                         <ul>
                             <li>Figma</li>
                             <li>Adobe XD</li>

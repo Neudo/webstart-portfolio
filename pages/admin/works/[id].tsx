@@ -71,9 +71,9 @@ const EditAdmin: NextPage = () => {
     }
 
     return (
-        <div className="flex">
+        <div className="md:flex">
             <SidebarComponent></SidebarComponent>
-            <div className="w-1/2 m-auto">
+            <div className="w-full md:w-1/2 mt-5 m-auto">
                 {message && <p>{message}</p>}
                 <form  className="flex flex-wrap form-add-work p-8 bg-lightBlueSecondary-0" onSubmit={handleSubmit}>
                     <label className="flex flex-col half-width " htmlFor="title"> Titre

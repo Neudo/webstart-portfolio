@@ -10,7 +10,7 @@ const ProjectComponent: FC = () =>
             <div className="item-project flex relative ">
 
                 <Link href="/project-details" className="wrapper-img w-3/4 filter-img ">
-                <div> <img src={imgProject.src} alt=""/>
+                <div> <img src={imgProject.src} alt="{work.title}"/>
                 </div>
                 </Link>
                 <div className="ml-5 project-text">

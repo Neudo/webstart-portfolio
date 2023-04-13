@@ -3,6 +3,8 @@ import {IWork} from "@/@types/work";
 import * as process from "process";
 import { ParsedUrlQuery } from 'querystring'
 import Head from "next/head";
+import Link from "next/link";
+import {CldImage} from "next-cloudinary";
 
 interface Props {
     work: IWork | null
@@ -15,7 +17,25 @@ const SingleWorkPage: NextPage<Props> = ({ work }) => {
             <Head>
                 <title>Document</title>
             </Head>
-            <h1>{work?.title ?? 'Pas de projet ! ok'}</h1>
+            <div className="banner md:max-h-[50vh] md:h-[50vh] bg-fixed bg-bottom-center bg-no-repeat bg-cover overflow-hidden">
+                <CldImage
+                    width="900"
+                    height="400"
+                    src={work?.coverImage} alt={work?.title}></CldImage>
+            </div>
+
+
+            <div className="container mt-[100px]">
+                <h2 className="mb-10">{work?.title ?? 'Pas de projet !'}</h2>
+
+                <p className="w-4/5">
+                    {work?.description}
+                </p>
+            </div>
+
+            <div className="text-center mt-[100px] mb-[100px] ">
+                <Link href="/works">BACK</Link>
+            </div>
 
         </>
     )

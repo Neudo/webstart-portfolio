@@ -13,7 +13,6 @@ const Page = () => {
     return (
         <>
             <AboutComponent></AboutComponent>
-            <SocialComponent></SocialComponent>
         </>
     )
 }
